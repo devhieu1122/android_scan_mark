@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <ImageButton
+        android:layout_weight=".1"
+        android:id="@+id/btn_flash_mode"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        android:src="@drawable/icon_flash"/>
+    <!-- Barcode Reader fragment -->
+    <RelativeLayout
+        android:layout_weight=".8"
+        android:id="@+id/layoutFrame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <fragment
+            android:id="@+id/barcode_fragment"
+            android:name="com.dev_hieu.demo.BarcodeReader"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:auto_focus="true"
+            app:use_flash="false" />
+
+        <!-- Scanner overlay animation -->
+        <com.dev_hieu.demo.ScannerOverlay
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#44000000"
+            app:line_color="#7323DC"
+            app:line_speed="6"
+            app:line_width="4"
+            app:square_height="300"
+            app:square_width="250"
+            tools:layout_editor_absoluteX="81dp"
+            tools:layout_editor_absoluteY="28dp" />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/btnSave"
+        android:layout_weight=".1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutFrame"
+        android:background="@color/colorPrimaryDark"
+        android:text="Save"
+        android:textSize="25dp"/>
+
+</LinearLayout>
