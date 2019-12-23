@@ -23,19 +23,13 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.dev_hieu.demo.camera.CameraSourcePreview;
-import com.dev_hieu.demo.database.DatabaseSQLite;
+import com.dev_hieu.demo.controller.RemoteService;
 import com.dev_hieu.demo.model.Student;
 import com.dev_hieu.demo.model.StudentMark;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.vision.barcode.Barcode;
 
 import java.io.IOException;
 
-import java.time.Instant;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
 import static com.dev_hieu.demo.R.layout.activity_main;
@@ -102,9 +96,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new MarkAsyncTask().execute(barcode.displayValue);
+                int maCaHoc = Integer.parseInt(getIntentString());
+                String maSV = barcode.displayValue.trim();
+                final String url = "sinhvien/" + "diemDanhSV/" + maSV + "/" + maCaHoc;
+                new MarkAsyncTask().execute(RemoteService.createURL() + url);
             }
         });
+
 
     }
 
@@ -123,9 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    private void showDialogResult(Context context, String msg) {
+    private void showDialogResult(Context context, String title, String msg) {
         AlertDialog.Builder alert = new AlertDialog.Builder(context);
-        alert.setTitle("Information");
+        alert.setTitle(title);
         alert.setMessage(msg);
         alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -171,81 +169,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-
-    public void initiateData() {
-        listStudent = new ArrayList<>();
-        listStudent.add(new Student(16130379, "Hiếu", "Nguyễn", "DH16DTA"));
-        listStudent.add(new Student(16130603, "Thuận", "Lê Văn", "DH16DTA"));
-        listStudent.add(new Student(16130380, "Hiếu", "Nguyễn Trung", "DH16DTC"));
-    }
-
-    public String getIntentSubject(String type) {
-        String subject = "";
+    public String getIntentString() {
+        String maCH = "";
         Intent intent = this.getIntent();
-        if (type == "SUBJECT_ID") {
-            subject = intent.getStringExtra("SUBJECT_ID");
-        } else {
-            subject = intent.getStringExtra("CLASS_ROOM");
-        }
-        return subject;
+        maCH = intent.getStringExtra("maCaHoc");
+        return maCH;
     }
+
 
     private class MarkAsyncTask extends AsyncTask<String, Void, String> {
-        List<StudentMark> list = null;
-        StudentMark studentMark;
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-        }
-
         @RequiresApi(api = Build.VERSION_CODES.O)
         @Override
         protected String doInBackground(String... strings) {
-            String msg = "";
-            String id = strings[0];
-            LocalDate now = LocalDate.now();
-            Date date = Date.valueOf(String.valueOf(now));
-
-            list = DatabaseSQLite.getListStudentMark(getApplicationContext());
-            for(int i=0;i<list.size();i++) {
-                if (list != null) {
-                    if ( list.get(i).getStudentID() == Integer.parseInt(id)) {
-                        msg = "Sinh viên đã được điểm danh trước do";
-                    } else {
-                        int studentID = Integer.parseInt(id);
-                        String subjectID = getIntentSubject("SUBJECT_ID");
-                        String classRoom = getIntentSubject("CLASS_ROOM");
-                        String d = date.toString();
-                        String status = "True";
-                        studentMark = new StudentMark(studentID, subjectID, classRoom, d, status);
-                        DatabaseSQLite.addStudentMark(getApplicationContext(), studentMark);
-                        msg = "Sinh viên chưa điểm danh";
-                    }
-                } else {
-                    int studentID = Integer.parseInt(id);
-                    String subjectID = getIntentSubject("SUBJECT_ID");
-                    String classRoom = getIntentSubject("CLASS_ROOM");
-                    String d = date.toString();
-                    String status = "True";
-                    studentMark = new StudentMark(studentID, subjectID, classRoom, d, status);
-                    DatabaseSQLite.addStudentMark(getApplicationContext(), studentMark);
-                    msg = "List null";
-                }
-            }
-            Log.i(TAG, "doInBackground: " +msg);
-
-            return msg;
+            return RemoteService.GET(strings[0]);
         }
 
         @Override
-        protected void onPostExecute(String s) {
+        protected void onPostExecute(final String s) {
             super.onPostExecute(s);
-//            showDialogResult(getApplicationContext(), s);
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (s.equalsIgnoreCase("true")) {
+                        showDialogResult(MainActivity.this, "Điểm danh sinh viên", "Sinh viên đã được điểm danh");
+                        /*Toast.makeText(MainActivity.this, "Sinh vien da dc diem danh", Toast.LENGTH_LONG);
+                        Log.i(TAG, "onPostExecute: Sinh vien da dc diem danh");
+                    } else if (s.equalsIgnoreCase("false")) {
+                        Toast.makeText(MainActivity.this, "Sinh vien chua duoc dang ky mon hoc nay", Toast.LENGTH_LONG);
+                        Log.i(TAG, "onPostExecute: Sinh vien chua duoc dang ky mon hoc nay");
+                    } else {
+                        Toast.makeText(MainActivity.this, "Đã có lỗi xảy ra... Vui lòng thử lại sau!", Toast.LENGTH_LONG);*/
+                    } else if (s.equalsIgnoreCase("false")) {
+                        showDialogResult(MainActivity.this, "Điểm danh sinh viên", "Sinh viên chưa đăng ký môn học này");
+                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
+                        alert.setTitle("Điểm danh sinh viên");
+                        alert.setMessage("Sinh viên chưa đăng ký môn học này");
+                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+
+                            }
+                        });
+                        Dialog dialog = alert.create();
+                        dialog.show();
+                    }
+                }
+            });
+
+
         }
     }
-
-    public void getDate() {
-
-    }
-
 }

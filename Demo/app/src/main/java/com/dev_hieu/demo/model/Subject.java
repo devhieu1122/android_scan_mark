@@ -3,28 +3,61 @@ package com.dev_hieu.demo.model;
 public class Subject {
 
     //Mã môn học
-    private String subjectID;
+    private String maMH;
     //Tên môn học
-    private String subjectName;
+    private String tenMH;
 
-    public String getSubjectID() {
-        return subjectID;
+    private String maGV;
+
+    private String phongHoc;
+
+    private int soTiet;
+
+    public Subject(String maMH, String tenMH, String maGV, String phongHoc, int soTiet) {
+        this.maMH = maMH;
+        this.tenMH = tenMH;
+        this.maGV = maGV;
+        this.phongHoc = phongHoc;
+        this.soTiet = soTiet;
     }
 
-    public void setSubjectID(String subjectID) {
-        this.subjectID = subjectID;
+    public String getMaMH() {
+        return maMH;
     }
 
-    public String getSubjectName() {
-        return subjectName;
+    public void setMaMH(String maMH) {
+        this.maMH = maMH;
     }
 
-    public void setSubjectName(String subjectName) {
-        this.subjectName = subjectName;
+    public String getTenMH() {
+        return tenMH;
     }
 
-    public Subject(String subjectID, String subjectName) {
-        this.subjectID = subjectID;
-        this.subjectName = subjectName;
+    public void setTenMH(String tenMH) {
+        this.tenMH = tenMH;
+    }
+
+    public String getMaGV() {
+        return maGV;
+    }
+
+    public void setMaGV(String maGV) {
+        this.maGV = maGV;
+    }
+
+    public String getPhongHoc() {
+        return phongHoc;
+    }
+
+    public void setPhongHoc(String phongHoc) {
+        this.phongHoc = phongHoc;
+    }
+
+    public int getSoTiet() {
+        return soTiet;
+    }
+
+    public void setSoTiet(int soTiet) {
+        this.soTiet = soTiet;
     }
 }

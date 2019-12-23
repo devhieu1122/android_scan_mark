@@ -10,21 +10,13 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.AssetFileDescriptor;
 import android.content.res.TypedArray;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.hardware.Camera;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
-import android.media.RingtoneManager;
-import android.media.ToneGenerator;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
-import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -42,7 +34,6 @@ import androidx.fragment.app.Fragment;
 
 import com.dev_hieu.demo.camera.CameraSource;
 import com.dev_hieu.demo.camera.CameraSourcePreview;
-import com.dev_hieu.demo.database.DatabaseSQLite;
 import com.dev_hieu.demo.model.Student;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -51,9 +42,6 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
-import java.nio.charset.CoderMalfunctionError;
-import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
@@ -234,6 +222,7 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
                         }
                     });
                     thread.start();
+                    mPreview.release();
                 }
 
             }
@@ -265,73 +254,6 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
                 .setFlashMode(useFlash ? Camera.Parameters.FLASH_MODE_TORCH : null)
                 .build();
     }
-
-    public boolean compareStudent(int code) {
-        initiateData();
-        for (int i = 0; i < listStudent.size(); i++) {
-            if (listStudent.get(i).getId() == (code)) {
-                Log.i(TAG, "compareStudent: Sinh viên đã được điểm danh");
-                playSound(getActivity());
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(500);
-                return true;
-            } else {
-                Log.i(TAG, "compareStudent: Sinh viên ko ton tai");
-                Vibrator vibrator = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                vibrator.vibrate(500);
-            }
-        }
-        return false;
-    }
-
-    public void playSound(Context context) {
-        try {
-            Uri soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            MediaPlayer mMediaPlayer = new MediaPlayer();
-            mMediaPlayer.setDataSource(context, soundUri);
-            final AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-
-            if (audioManager.getStreamVolume(AudioManager.STREAM_ALARM) != 0) {
-                mMediaPlayer.setAudioStreamType(audioManager.STREAM_ALARM);
-                // Uncomment the following line if you aim to play it repeatedly
-                // mMediaPlayer.setLooping(true);
-                mMediaPlayer.prepare();
-                mMediaPlayer.start();
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public void initiateData() {
-        listStudent = new ArrayList<>();
-        listStudent.add(new Student(16130379, "Hiếu", "Nguyễn", "DH16DTA"));
-        listStudent.add(new Student(16130603, "Thuận", "Lê Văn", "DH16DTA"));
-        listStudent.add(new Student(16130380, "Hiếu", "Nguyễn Trung", "DH16DTC"));
-    }
-
-
-    public boolean checkSyntax(String str) {
-        String regex = "^[0-9]{4,8}";
-        if (str.matches(regex)) {
-            Toast.makeText(getActivity(), "Mã sinh viên hợp lệ", Toast.LENGTH_SHORT).show();
-            return true;
-        } else {
-            Toast.makeText(getActivity(), "Mã sinh viên không hợp lệ", Toast.LENGTH_SHORT).show();
-            return false;
-        }
-    }
-
-    public void processAffterDetected(List<String> ls) {
-
-        for (int i = 0; i < ls.size(); i++) {
-            if (ls.get(i) == ls.get(i + 1)) {
-                ls.remove(i + 1);
-            }
-        }
-    }
-
 
     public void toggleFlash() {
         useFlash = !useFlash;
@@ -460,7 +382,7 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
     }
 
 
-//    @Override
+/*//    @Override
 //    public boolean onTouch(View view, MotionEvent motionEvent) {
 //        boolean b = scaleGestureDetector.onTouchEvent(motionEvent);
 //
@@ -469,7 +391,7 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
 //        return b || c || view.onTouchEvent(motionEvent);
 //    }
 
-    /*private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
+    *//*private class CaptureGestureListener extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onSingleTapConfirmed(MotionEvent e) {
             return super.onSingleTapConfirmed(e); onTap(e.getRawX(), e.getRawY()) || super.onSingleTapConfirmed(e);
@@ -493,7 +415,7 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
         }
     }
 
-    public void playBeep() {
+    /*public void playBeep() {
         MediaPlayer m = new MediaPlayer();
         try {
             if (m.isPlaying()) {
@@ -513,6 +435,7 @@ public class BarcodeReader extends Fragment /*View.OnTouchListener,*/ {
             e.printStackTrace();
         }
     }
+*/
 
     public interface BarcodeReaderListener {
         void onScanned(Barcode barcode);
