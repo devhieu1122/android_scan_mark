@@ -1,6 +1,5 @@
 package com.dev_hieu.demo;
 
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -20,6 +19,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -71,9 +71,11 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
 //                String maMH = edtMH.getText().toString();
 //                int thu = Integer.parseInt(edtThu.getText().toString());
 //                int tiet = Integer.parseInt(edtTiet.getText().toString());
-//
-                final String url = "sinhvien/getMaCaHoc/" + selectedMaPH + "/" + selectedMaMH + "/" + selectedThu + "/" + selectedTiet;
-                new AsyncGetMaCaHoc().execute(RemoteService.createURL() + url);
+
+                final String url = "quanly/checkGioDiemDanh/" + selectedThu + "/" + selectedTiet;
+                new AsyncCheckGioDiemDanh().execute(RemoteService.createURL() + url);
+//                final String url = "sinhvien/getMaCaHoc/" + selectedMaPH + "/" + selectedMaMH + "/" + selectedThu + "/" + selectedTiet;
+//                new AsyncGetMaCaHoc().execute(RemoteService.createURL() + url);
 
             }
         });
@@ -241,6 +243,36 @@ public class Main2Activity extends AppCompatActivity implements AdapterView.OnIt
             }
         }
         return ls;
+    }
+
+    class AsyncCheckGioDiemDanh extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... strings) {
+            return RemoteService.GET(strings[0]);
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            super.onPostExecute(s);
+
+            if (s.equalsIgnoreCase("true")) {
+                final String url = "sinhvien/getMaCaHoc/" + selectedMaPH + "/" + selectedMaMH + "/" + selectedThu + "/" + selectedTiet;
+                new AsyncGetMaCaHoc().execute(RemoteService.createURL() + url);
+            } else {
+                androidx.appcompat.app.AlertDialog.Builder alert = new AlertDialog.Builder(Main2Activity.this);
+                alert.setTitle("Kiểm tra giờ điểm danh");
+                alert.setMessage("Chưa đến giờ điểm danh! Vui lòng thử lại sau.");
+                alert.setNegativeButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                });
+                Dialog dialog = alert.create();
+                dialog.show();
+            }
+        }
     }
 
     class AsyncGetMaCaHoc extends AsyncTask<String, Void, String> {

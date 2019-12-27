@@ -56,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         btnSave = findViewById(R.id.btnSave);
         btnSave.setOnClickListener(this);
+
     }
 
     @Override
@@ -190,29 +191,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (s.equalsIgnoreCase("true")) {
-                        showDialogResult(MainActivity.this, "Điểm danh sinh viên", "Sinh viên đã được điểm danh");
-                        /*Toast.makeText(MainActivity.this, "Sinh vien da dc diem danh", Toast.LENGTH_LONG);
-                        Log.i(TAG, "onPostExecute: Sinh vien da dc diem danh");
-                    } else if (s.equalsIgnoreCase("false")) {
-                        Toast.makeText(MainActivity.this, "Sinh vien chua duoc dang ky mon hoc nay", Toast.LENGTH_LONG);
-                        Log.i(TAG, "onPostExecute: Sinh vien chua duoc dang ky mon hoc nay");
-                    } else {
-                        Toast.makeText(MainActivity.this, "Đã có lỗi xảy ra... Vui lòng thử lại sau!", Toast.LENGTH_LONG);*/
-                    } else if (s.equalsIgnoreCase("false")) {
-                        showDialogResult(MainActivity.this, "Điểm danh sinh viên", "Sinh viên chưa đăng ký môn học này");
-                        AlertDialog.Builder alert = new AlertDialog.Builder(MainActivity.this);
-                        alert.setTitle("Điểm danh sinh viên");
-                        alert.setMessage("Sinh viên chưa đăng ký môn học này");
-                        alert.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.dismiss();
-
-                            }
-                        });
-                        Dialog dialog = alert.create();
-                        dialog.show();
+                    if (!s.equalsIgnoreCase("")) {
+                        showDialogResult(MainActivity.this, "Điểm danh sinh viên", s);
                     }
                 }
             });
