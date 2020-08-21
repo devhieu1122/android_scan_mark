@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".manager.ListStudentActivity"
+    tools:showIn="@layout/activity_list_student">
+
+
+    <ListView
+        android:id="@+id/lv_student"
+        android:layout_width="373dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_xem" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/content_data_mark"
+        app:layout_constraintBottom_toTopOf="@+id/btn_xem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></include>
+
+    <Button
+        android:id="@+id/btn_xem"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="32dp"
+        android:text="Xem"
+        app:layout_constraintBottom_toTopOf="@+id/lv_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        android:textSize="24dp"
+        android:padding="20dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="@string/menu_home" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/profile"
+            android:title="@string/menu_profile" />
+
+    </group>
+
+    <item android:title="Quản lý">
+        <menu>
+
+            <item
+                android:id="@+id/nav_dssv"
+                android:icon="@drawable/list_student"
+                android:title="@string/menu_dssv" />
+
+            <item
+                android:id="@+id/nav_checkDD"
+                android:icon="@drawable/check"
+                android:title="Kiểm tra điểm danh" />
+            <item
+                android:id="@+id/nav_themdssv"
+                android:icon="@drawable/list_add_student"
+                android:title="@string/menu_Thêm_danh_sach_sv" />
+
+            <item
+                android:id="@+id/nav_taomh"
+                android:icon="@drawable/subject"
+                android:title="@string/menu_taomh" />
+            <item
+                android:id="@+id/nav_taophong"
+                android:icon="@drawable/room"
+                android:title="Tạo phòng học" />
+            <item
+                android:id="@+id/nav_taoCa"
+                android:icon="@drawable/lecture"
+                android:title="Tạo ca học" />
+
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Đăng xuất" />
+
+        </menu>
+    </item>
+
+
+</menu>

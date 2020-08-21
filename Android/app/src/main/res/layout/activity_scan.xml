@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".mark.ScanActivity"
+android:orientation="vertical">
+
+<!--<ImageButton
+    android:layout_weight=".1"
+    android:id="@+id/btn_flash_mode"
+    android:layout_width="40dp"
+    android:layout_height="40dp"
+    android:background="@null"
+    android:scaleType="fitXY"
+    android:src="@drawable/icon_flash"/>
+&lt;!&ndash; Barcode Reader fragment &ndash;&gt;-->
+<RelativeLayout
+    android:layout_weight=".88"
+    android:id="@+id/layoutFrame"
+    android:layout_width="match_parent"
+    android:layout_height="0dp">
+
+
+    <fragment
+        android:id="@+id/barcode_fragment"
+        android:name="com.example.projectcuoiki.mark.BarcodeReader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:auto_focus="true"
+        app:use_flash="false" />
+
+    <!-- Scanner overlay animation -->
+    <com.example.projectcuoiki.mark.ScannerOverlay
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44000000"
+        app:line_color="#7323DC"
+        app:line_speed="6"
+        app:line_width="4"
+        app:square_height="300"
+        app:square_width="250"
+        tools:layout_editor_absoluteX="81dp"
+        tools:layout_editor_absoluteY="28dp" />
+</RelativeLayout>
+<Button
+    android:id="@+id/btnSave"
+    android:layout_weight=".12"
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_below="@id/layoutFrame"
+    android:background="@color/colorPrimaryDark"
+    android:text="Xong"
+    android:textSize="25dp"
+    />
+
+</LinearLayout>

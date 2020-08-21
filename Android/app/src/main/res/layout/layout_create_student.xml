@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login"
+    >
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+    </com.google.android.material.appbar.AppBarLayout>
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" android:layout_gravity="center" android:gravity="center">
+
+        <TableRow android:layout_height="match_parent" android:layout_width="match_parent" android:gravity="center"> <Button
+            android:id="@+id/btn_create"
+            android:layout_width="231dp"
+            android:layout_height="wrap_content"
+
+            android:background="@color/colorPrimary"
+            android:text="create"></Button></TableRow>
+        <TableRow android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:gravity="center">
+            <Button
+                android:id="@+id/btn_import"
+                android:layout_marginTop="10dp"
+                android:text="import"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimary"
+                ></Button>
+
+        </TableRow>
+
+    </TableLayout>
+
+</LinearLayout>

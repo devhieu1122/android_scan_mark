@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="110dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@null"
+
+            android:src="@drawable/logo_truong" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="Thêm Môn Học"
+            android:textAllCaps="true"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="#0A0A0A"
+        android:layout_marginBottom="5dp"/>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Mã Môn Học:"
+            android:gravity="left|center"/>
+        <EditText
+            android:id="@+id/edit_ma_mon_hoc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+
+            ></EditText>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:text="Tên Môn Học:"/>
+
+        <EditText
+            android:id="@+id/edit_ten_mon_hoc"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:gravity="left|center"
+            android:text="Mã Giáo Viên:"/>
+
+        <EditText
+            android:id="@+id/edt_ma_gv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+
+
+    </TableRow>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Số Tiết Dạy:"
+            android:gravity="left|center"/>
+        <EditText
+            android:id="@+id/edt_so_tiet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="number"/>
+
+
+    </TableRow>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></TextView>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </TextView>
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="87dp"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/btn_huy"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="80dp"
+            android:background="	#ff0000"
+            android:gravity="center"
+            android:text="Hủy"></Button>
+
+        <Button
+            android:id="@+id/btn_tao"
+            android:layout_width="100dp"
+            android:layout_height="45dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:background="#008000"
+            android:gravity="center"
+            android:text="Thêm"></Button>
+
+
+    </TableRow>
+
+</LinearLayout>

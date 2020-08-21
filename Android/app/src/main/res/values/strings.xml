@@ -1,0 +1,76 @@
+<resources>
+    <string name="app_name">Match Student</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+
+    <string name="menu_profile">Thông tin cá nhân</string>
+    <string name="menu_taomh">Tạo Môn Học</string>
+    <string name="menu_Thêm_danh_sach_sv">Thêm danh sách sinh viên</string>
+    <string name="menu_dssv">Danh sách sinh viên</string>
+
+    <string name="menu_login">Đăng nhập</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="title_activity_profile">Thông tin cá nhân</string>
+    <string name="title_activity_login">Đăng nhập</string>
+    <string name="Menu_dangki">Đăng Kí</string>
+
+    //login
+    <string name="email_address">Tài khoản</string>
+    <string name="password">Mật khẩu</string>
+    <string name="passwordagain">Nhập lại mật khẩu</string>
+    <string name="login_now">Đăng nhập</string>
+    <string name="chuacotaikhoan">Bạn chưa có tài khoản? Đăng kí tại đây.</string>
+    <string name="txt_register">Đăng kí tài khoản</string>
+    <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_create_qr">CreateQRActivity</string>
+    <string name="title_activity_scan_qrcode">ScanQRCodeActivity</string>
+    <string name="title_activity_scan_qr">ScanQRActivity</string>
+    <string name="title_activity_ticket_result">TicketResultActivity</string>
+
+
+    <string name="title_activity_ticket">Book Ticket</string>
+    <string name="lbl_duration">DURATION</string>
+    <string name="lbl_genre">GENRE</string>
+    <string name="lbl_rating">RATING</string>
+    <string name="lbl_price">PRICE</string>
+    <string name="btn_buy_now">BUY NOW</string>
+    <string name="btn_coming_soon">COMING SOON</string>
+    <string name="msg_no_ticket_found">No ticket found. Try scanning the QR Codes from http://api.androidhive.info/qrcodes/</string>
+    <string name="lbl_scan_activity">Scan QR Code</string>
+    <string name="title_activity_set_up">SetUpActivity</string>
+    <string name="title_activity_change_password">Thay đổi mật khẩu</string>
+    <string name="title_activity_mark">Điểm danh sinh viên</string>
+    <string name="title_activity_scan">Quét điểm danh</string>
+    <string name="title_activity_list_student">Danh sách sinh viên</string>
+    <string name="title_activity_check_mark">Kiểm tra điểm danh sinh viên</string>
+    <string name="title_activity_result_mark">ResultMarkActivity</string>
+
+
+    <string name="ok">OK</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="permission_camera">This app needs camera permission to scan barcode</string>
+    <string name="permission_camera_rationale">Access to the camera is needed for detection</string>
+    <string name="no_camera_permission">This application cannot run because it does not have the camera permission.  The application will now exit.</string>
+    <string name="low_storage_error">Face detector dependencies cannot be downloaded due to low device storage</string>
+    <string name="title_activity_main">Barcode Reader Sample</string>
+    <string name="barcode_header">Click &quot;Read Barcode&quot; to read a barcode</string>
+    <string name="read_barcode">Read Barcode</string>
+    <string name="auto_focus">Auto Focus</string>
+    <string name="use_flash">Use Flash</string>
+    <string name="barcode_success">Barcode read successfully</string>
+    <string name="barcode_failure">No barcode captured</string>
+    <string name="barcode_error">"Error reading barcode: %1$s"</string>
+    <string name="grant">GRANT</string>
+    <string name="cancel">CANCEL</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_create_room">CreateRoomActivity</string>
+    <string name="title_activity_create_lecture">CreateLectureActivity</string>
+</resources>
